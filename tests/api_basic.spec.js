@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Get User Details via JSONPlaceholder', async ({ request }) => {
+test('Get User Details via JSONPlaceholder 1', async ({ request }) => {
   
   // 1. Send GET request to the friendly API
   const response = await request.get('https://jsonplaceholder.typicode.com/users/1');
