@@ -10,7 +10,7 @@ test('End to end testing', async ({page}) =>{
     await page.locator('#userPassword').fill(password);
     await page.locator('#login').click();
     await page.waitForLoadState('networkidle');
-    await products.first().waitFor();
+    // await products.first().waitFor();
     await expect(page.locator("div[class='card']").first()).toBeVisible();
     const count = await products.count();
     console.log(count);
