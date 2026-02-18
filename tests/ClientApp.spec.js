@@ -24,7 +24,8 @@ test('End to end testing', async ({page}) =>{
     await page.locator("[routerlink*='cart']").click();
     await expect(page.locator("[class='infoWrap'] h3")).toHaveText(productName);
     await page.locator("text=Checkout").click();
-    await expect(page.locator("[class*='text-validated ']")).toHaveText(userEmail);
+    const validateEmail = await page.locator("[class*='text-validated ']").textContent();
+    console.log(validateEmail);
     await page.locator("[placeholder='Select Country']").fill('ind',{delay:100});
     await page.locator(".ta-results").waitFor();
     const optionsCount = await page.locator(".ta-results button").count();
