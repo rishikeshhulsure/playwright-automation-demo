@@ -10,7 +10,7 @@ test('End to end testing', async ({page}) =>{
     await page.locator('#userPassword').fill(password);
     await page.locator('#login').click();
     await page.waitForLoadState('networkidle');
-    // await products.first().waitFor();
+    await products.first().waitFor();
     await expect(page.locator("div[class='card']").first()).toBeVisible();
     const count = await products.count();
     console.log(count);
@@ -27,7 +27,7 @@ test('End to end testing', async ({page}) =>{
     const validateEmail = await page.locator("[class*='text-validated ']").textContent();
     console.log(validateEmail);
     await page.locator("[placeholder='Select Country']").fill('ind',{delay:100});
-    await page.locator(".ta-results").waitFor();
+    // await page.locator(".ta-results").waitFor();
     const optionsCount = await page.locator(".ta-results button").count();
     for(let i=0; i<optionsCount; i++){
         let text = await page.locator(".ta-results button").nth(i).textContent();
