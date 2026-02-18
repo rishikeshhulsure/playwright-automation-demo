@@ -26,18 +26,18 @@ test('End to end testing', async ({page}) =>{
     await page.locator("text=Checkout").click();
     const validateEmail = await page.locator("[class*='text-validated ']").textContent();
     console.log(validateEmail);
-    await page.locator("[placeholder='Select Country']").fill('ind',{delay:100});
-    // await page.locator(".ta-results").waitFor();
-    const optionsCount = await page.locator(".ta-results button").count();
+    await page.locator("[placeholder='Select Country']").pressSequentially('Ind');
+    await page.locator("section.ta-results").waitFor();
+    const optionsCount = await page.locator("section.ta-results button").count();
     for(let i=0; i<optionsCount; i++){
-        let text = await page.locator(".ta-results button").nth(i).textContent();
-        if(text.trim() === 'India'){
-            await page.locator(".ta-results button").nth(i).click();
+        let text = await page.locator("section.ta-results button").nth(i).textContent();
+        if(text === ' India'){
+            await page.locator("section.ta-results button").nth(i).click();
             break;
         }    
     }
     await page.locator("text=Place Order").click();
-    await expect(page.locator(".hero-primary")).toHaveText('THANKYOU FOR THE ORDER.');
+    await expect(page.locator("//h1")).toHaveText('Thankyou for the order.');
     let orderNumber = await page.locator("[class='ng-star-inserted'] td label").last().textContent();
     console.log(orderNumber);
 
